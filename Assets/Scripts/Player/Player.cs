@@ -3,6 +3,8 @@ using System;
 
 public class Player : MonoBehaviour {
 	Quaternion initRotation;
+	public Level level;
+	public int a;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +19,9 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		Movement();
 		Rotation();
+		Vector3 pos = transform.position;
+		level.getTile(pos.x,pos.y);
+
     }
     /*
     ** Movement()
