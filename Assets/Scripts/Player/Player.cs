@@ -20,7 +20,11 @@ public class Player : MonoBehaviour {
 		Movement();
 		Rotation();
 		Vector3 pos = transform.position;
-		level.getTile(pos.x,pos.y);
+		Tile tile = level.getTile(pos.x,pos.y);
+		if(tile.state != 1){
+			tile.state = 1;
+		}
+		//print(tile);
 
     }
     /*
