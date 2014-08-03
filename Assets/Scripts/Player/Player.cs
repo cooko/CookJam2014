@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
 using System;
 
-public class player : MonoBehaviour {
+public class Player : MonoBehaviour {
 	Quaternion initRotation;
 
 	// Use this for initialization
 	void Start () {
 		initRotation = transform.rotation;
-
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-	
 	}
+	// Fixed Update is called once per frame
+	// Used for better player movement/control
 	void FixedUpdate() {
 		Movement();
 		Rotation();
     }
+    /*
+    ** Movement()
+    ** Horizontal movement control. Moves the player every update based on the control stick
+    */
     void Movement() {
 		float horizontal = Input.GetAxis("LH");
 		float vertical = Input.GetAxis("LV");
@@ -27,12 +31,19 @@ public class player : MonoBehaviour {
 		// Vertical movement
 		transform.Translate(Vector3.up * (Math.Abs(vertical)/8)*Math.Sign(vertical), Space.World);
     }
+    /*
+    ** Rotation()
+    ** Rotation control. Rotates the player based on the right control stick.
+    ** Rotation is in respect to the initial rotation of the object at creation.
+    */
     void Rotation(){
 		float horizontal = Input.GetAxis("RH");
 		float vertical = Input.GetAxis("RV");
 		float angle = Mathf.Atan2(vertical, horizontal) * Mathf.Rad2Deg;
 
+		// Rotation is reset to the initial rotation
 		transform.rotation = initRotation;
+		// Object is rotated into place
 		transform.Rotate(0,0,angle);
 
     }
