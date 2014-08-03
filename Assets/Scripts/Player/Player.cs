@@ -19,10 +19,11 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		Movement();
 		Rotation();
+
 		Vector3 pos = transform.position;
 		Tile tile = level.getTile(pos.x,pos.y);
-		if(tile.state != 1){
-			tile.state = 1;
+		if(tile.GetState != 1){
+			tile.SetState(1);
 		}
 		//print(tile);
 
