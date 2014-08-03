@@ -2,12 +2,13 @@
 using System.Collections;
 
 public class Projectile : MonoBehaviour {
-	float speed = 3;
+	public float speed;
 	public string player;
 	float lifeTime;
 
 	// Use this for initialization
 	void Start () {
+
 	}
 	
 	// Update is called once per frame
@@ -21,9 +22,12 @@ public class Projectile : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-	void OnTriggerEnter(Collider collider) {
+	void OnTriggerEnter2D(Collider2D collider) {
+		if (collider.gameObject.tag == "Wall"){
+			Destroy (gameObject);				
+		}
 		//if (collider.gameObject.tag == "Level" || (collider.gameObject.tag == "Player" && collider.gameObject.name != player)) {
-			Destroy(gameObject);
+		//Destroy(gameObject);
 		//}
 	}
 }

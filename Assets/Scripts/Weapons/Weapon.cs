@@ -12,21 +12,21 @@ public class Weapon : MonoBehaviour {
 	void Start () {
 		fireable = true;
 		cooldown = 0;
-
+		FireRate = 1/FireRate;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		bool fire = Input.GetButton("Fire1");
 
-		if(fire){
-			Fire();
+		if(cooldown > 0){
+			cooldown -= 1 * Time.deltaTime;
+		}else{
+			if(fire){
+				Fire();
+				cooldown = FireRate; 
+			}			
 		}
-		//if(cooldown > 0){
-		//	cooldown -= 1 * Time.deltaTime;
-		//}else{
-		//	fireable = true;
-		//}
 	}
 	public bool Fire(){
 		//if(fireable){
